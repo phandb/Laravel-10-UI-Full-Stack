@@ -36,4 +36,26 @@ class Candidate extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Helper Methods
+    public function canFullName() {
+
+        return $this->canLastName . " "  . $this->canMiddleName . " " . $this->canFirstName;
+    }
+
+    public function dadFullName() {
+
+        return $this->dadLastName . " "  . $this->dadMiddleName . " " . $this->dadFirstName;
+    }
+
+    public function momFullName() {
+
+        return $this->momLastName . " "  . $this->momMiddleName . " " . $this->momFirstName;
+    }
+
+    public function sponFullName() {
+
+        return $this->sponLastName . " "  . $this->sponMiddleName . " " . $this->sponFirstName;
+    }
+
+
 }
