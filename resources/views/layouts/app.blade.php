@@ -1,24 +1,16 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    @include('layouts/includes.head')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,11 +62,30 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0  bg-dark">
+            {{--  navbar --}}
+            @include('layouts/includes.navbar')
+
+            {{-- header picture --}}
+
+            @include('layouts/includes.header')
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        {{-- Dynamic main content goes here --}}
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+  <!-- Footer Start -->
+    @include('layouts/includes.footer')
+    
+
 </body>
 </html>
