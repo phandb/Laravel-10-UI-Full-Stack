@@ -1,3 +1,4 @@
+@guest
 <div class="container-xxl py-5  hero-header mb-5">
     <div class="container my-5 py-5">
         <div class="row align-items-center g-5">
@@ -12,3 +13,4 @@
         </div>
     </div>
 </div>
+@endguest
