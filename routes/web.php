@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
+Route::get('/candidates/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
+Route::put('/candidates/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
+

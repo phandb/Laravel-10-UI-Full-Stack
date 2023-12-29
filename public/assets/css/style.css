@@ -417,6 +417,13 @@
 
 
 /*** Footer ***/
+.footer {   
+    
+    width: 100%;
+    height: 80px;  /* Height of the footer  */
+    background: #6cf;
+    text-align: center;
+}
 .footer .btn.btn-social {
     margin-right: 5px;
     width: 35px;
@@ -483,6 +490,16 @@
 
 
 /* Add on */
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
 
 bg-primary {
     background-color: #e91e63 !important;

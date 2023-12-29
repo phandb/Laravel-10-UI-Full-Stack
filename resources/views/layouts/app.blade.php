@@ -78,14 +78,14 @@
 
 
         {{-- Dynamic main content goes here --}}
-        <main class="py-4">
+        <main class="py-5" >
             @yield('content')
         </main>
-    </div>
-
-  <!-- Footer Start -->
-    @include('layouts/includes.footer')
     
+
+    <!-- Footer Start -->
+        @include('layouts/includes.footer')
+    </div>
 
 </body>
 </html>

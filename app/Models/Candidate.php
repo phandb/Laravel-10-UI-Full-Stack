@@ -37,7 +37,7 @@ class Candidate extends Model
     }
 
     // Helper Methods
-    public function canFullName() {
+    public function candidateFullName() {
 
         return $this->canLastName . " "  . $this->canMiddleName . " " . $this->canFirstName;
     }
@@ -52,9 +52,13 @@ class Candidate extends Model
         return $this->momLastName . " "  . $this->momMiddleName . " " . $this->momFirstName;
     }
 
-    public function sponFullName() {
+    public function sponsorFullName() {
 
         return $this->sponLastName . " "  . $this->sponMiddleName . " " . $this->sponFirstName;
+    }
+
+    public function getAge() {
+        return  (int)date('Y') - (int)substr($this->dateOfBirth,0,4);
     }
 
 

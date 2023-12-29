@@ -21,7 +21,7 @@
                     @endif
 
                 @else
-                    <a href="{{ route('home') }}" class="nav-item nav-link">Candidates</a>
+                    <a href="{{ route('candidates.index') }}" class="nav-item nav-link">Candidates</a>
 
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
