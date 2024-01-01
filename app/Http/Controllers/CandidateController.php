@@ -72,8 +72,8 @@ class CandidateController extends Controller
             'email' => 'nullable',
             'is_baptized_at_HVMCC' => 'nullable',
             'baptizedYear' => 'nullable',
-            'baptismForm' => 'nullable',
-            'filePath' => 'nullable',
+            //'baptismForm' => 'nullable',
+            'file' => 'nullable|mimes:pdf,doc,docx,jpeg,png,jpg|max:2048',
             'dadFirstName' => 'required',
             'dadLastName' => 'required',
             'dadPhone' => 'nullable',
@@ -83,19 +83,24 @@ class CandidateController extends Controller
             'sponFirstName' => 'required',
             'sponLastName' => 'required',
         ]);
+
+        if ($file = $request->file('file')) {
+            $fileName = $file->getClientOriginalName();
+
+
+             //dump($request->file('filePath')->getClientOriginalName());  // get original name of the uploaded file
+            // dump($baptismForm->getClientOriginalExtension());  // get original extension
+            // dump($baptismForm->getClientMimeType());  // get Mime file type
+            
+            $candidate->baptismForm = $candidate->canFirstName. '-' .$fileName;
+
+            $candidate->filePath = $request->file('file')->storeAs('uploads', $candidate->canFirstName. '-' .$fileName);
+        }
         $candidate->update($data);
 
-        return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
+       return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
         
         
     }
-       
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
 }

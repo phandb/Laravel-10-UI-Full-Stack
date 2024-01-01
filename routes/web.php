@@ -24,3 +24,8 @@ Route::get('/candidates', [CandidateController::class, 'index'])->name('candidat
 Route::get('/candidates/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
 Route::put('/candidates/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
 
+//Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+
+
+
+
