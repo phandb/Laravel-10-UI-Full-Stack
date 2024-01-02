@@ -3,6 +3,10 @@
 @section('content')
   <div class="container">
       <div class="row justify-content-center">
+
+        @if (session('status'))
+          <h4 class="alert alert-success">{{ session('status') }}</h4>
+        @endif
         <div class="card mt-5">
             <form enctype="multipart/form-data" 
                   method="POST" 
@@ -62,16 +66,16 @@
                   </div>
   
                   <div class="col-6">
-                    <label for="baptismForm" class="form-label text-muted fw-lighter">Baptism Form</label>
+                    <label for="baptismForm" class="form-label text-muted fw-lighter">Baptism Certificate</label>
                     <input type="text" name="baptismForm" value="{{ $candidate->baptismForm}}"class="form-control fw-bolder" >
                   </div>
 
                 </div>
                 <div class="row mt-5">
-                 
+                  <p><span class="text-muted fw-bolder">Please upload a baptism form if your child was not baptized at the HVMCC</span></p>
                   <div class="col-6">
                     <label for="filePath" class="form-label text-muted fw-lighter">Upload File (jpeg, jpg, png, pdf, docx)
-                      <span class="text-muted">(Please upload a baptism form if your child was not baptized at the HVMCC)</span>
+                      
                     </label>
                     <input type="file" name="file" class="form-control " id="file" placeholder="jpeg, jpg, png, pdf, docx">
                     
@@ -139,8 +143,8 @@
             
                 <div class="row justify-content-md-center  mt-5 mb-3">
                   <hr>
-                  <button type="submit" class="btn btn-outline-primary col col-md-2 m-2">Update & Save</button>
-                  <button type="cancel" class="btn btn-outline-danger  col col-md-2 m-2">Cancel</button>
+                  <button type="submit" class="btn btn-outline-primary col col-md-2 m-2">Update</button>
+                  <a href=" {{ route('candidates.index') }}" type="cancel" class="btn btn-outline-danger  col col-md-2 m-2">Back</a>
                 </div>
 
             </form>

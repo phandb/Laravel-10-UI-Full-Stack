@@ -20,11 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
-Route::get('/candidates/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
-Route::put('/candidates/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
+Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
+    
+    Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
+    Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
+    Route::put('/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
 
-//Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+    //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+
+});
 
 
 

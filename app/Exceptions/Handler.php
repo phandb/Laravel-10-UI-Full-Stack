@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -27,4 +29,11 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render (Request $request, Exception $exception) {
+    //     if ($exception instanceof AuthenticationException) {
+    //         return redirect('/');
+    //     }
+    //     return parent::render($request, $exception);
+    // }
 }

@@ -6,9 +6,15 @@ use App\Models\Candidate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class CandidateController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -85,6 +91,13 @@ class CandidateController extends Controller
         ]);
 
         if ($file = $request->file('file')) {
+
+            // retrieve current file if exists
+            $destination = '/uploads/' .$candidate->baptismForm;
+            if(file::exists($destination)) {
+                // delete the current file before update
+                file::delete($destination);
+            }
             $fileName = $file->getClientOriginalName();
 
 
@@ -98,9 +111,9 @@ class CandidateController extends Controller
         }
         $candidate->update($data);
 
-       return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
+       //return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
         
-        
+        return redirect()->back()->with('status', 'Candidate information updated successfully');
     }
    
 }
