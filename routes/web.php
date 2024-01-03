@@ -30,6 +30,16 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
 
 });
 
+Route::group(['prefix' => 'admins', 'middleware' => 'auth'], function() {
+    
+    Route::get('/login', [AdminController::class, 'index'])->name('admins.index');
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admins.edit');
+    Route::put('/update/{id}', [AdminController::class, 'update'])->name('admins.update');
+
+    //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+
+});
+
 
 
 

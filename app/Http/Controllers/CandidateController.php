@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 
 class CandidateController extends Controller
 {
-
+    // constructor checks for auth to use the controller methods
     public function __construct()
     {
         $this->middleware('auth');
