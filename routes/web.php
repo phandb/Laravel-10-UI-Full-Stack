@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CandidateController;
 
 /*
@@ -20,7 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'candidates', 'middleware' => 'auth:user'], function() {
     
     Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
     Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
@@ -30,11 +31,11 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
 
 });
 
-Route::group(['prefix' => 'admins', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin'], function() {
     
-    Route::get('/login', [AdminController::class, 'index'])->name('admins.index');
-    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('admins.edit');
-    Route::put('/update/{id}', [AdminController::class, 'update'])->name('admins.update');
+    Route::get('/login', [AdminController::class, 'viewLogin'])->name('admins.login');
+    Route::post('/login', [AdminController::class, 'checkLogin'])->name('admins.check-login');
+    Route::get('/index', [AdminController::class, 'index'])->name('admins.dashboard')->middleware('auth:admin');
 
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
 

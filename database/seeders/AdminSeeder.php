@@ -21,21 +21,21 @@ class AdminSeeder extends Seeder
 
             [   
                 'name' => 'Dalton Phan',
-                'email' => 'dphan369@lonecoding.com',
+                'email' => 'dphan369@coding.net',
                 
 
             ],
 
             [   
                 'name' =>'Noah Phan',
-                'email' => 'nphan369@lonecoding.com',
+                'email' => 'nphan369@coding.net',
                
 
             ],
 
             [   
                 'name' => 'Gemma Phan',
-                'email' => 'gphan369@lonecoding.com',
+                'email' => 'gphan369@coding.net',
                 
 
             ],

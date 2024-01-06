@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
     <a href="" class="navbar-brand p-0">
         <h1 class="text-primary m-0"><i class="fa fa-dove me-3"></i>Confirmation Class</h1>
         <!-- <img src="img/logo.png" alt="Logo"> -->
