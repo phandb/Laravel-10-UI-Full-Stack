@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'candidates', 'middleware' => 'auth:user'], function() {
+Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
     
     Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
     Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
@@ -33,7 +33,7 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth:user'], function()
 
 Route::group(['prefix' => 'admin'], function() {
     
-    Route::get('/login', [AdminController::class, 'viewLogin'])->name('admins.login');
+    Route::get('/login', [AdminController::class, 'viewLogin'])->name('admins.login')->middleware('admin');
     Route::post('/login', [AdminController::class, 'checkLogin'])->name('admins.check-login');
     Route::get('/index', [AdminController::class, 'index'])->name('admins.dashboard')->middleware('auth:admin');
 
