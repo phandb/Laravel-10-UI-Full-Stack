@@ -37,6 +37,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('/login', [AdminController::class, 'checkLogin'])->name('admins.check-login');
     Route::get('/index', [AdminController::class, 'index'])->name('admins.dashboard')->middleware('auth:admin');
 
+    Route::get('/edit/candidate/{id}', [AdminController::class, 'edit'])->name('admins.edit-candidate')->middleware('auth:admin');
+    Route::put('/update/candidate/{id}', [AdminController::class, 'update'])->name('candidates.update-candidate')->middleware('auth:admin');
+
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
 
 });
