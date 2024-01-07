@@ -22,235 +22,24 @@
 <body class="g-sidenav-show  bg-dark-200">
 
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
-      <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" {{ route('admins.dashboard') }} " >
-          {{-- <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo"> --}}
-          <span class="ms-1 font-weight-bold text-white">Confirmation Class</span>
-        </a>
-      </div>
-      <hr class="horizontal light mt-0 mb-2">
-      <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white active bg-gradient-primary" href="{{ route('admins.dashboard') }} ">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">dashboard</i>
-              </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/tables.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">table_view</i>
-              </div>
-              <span class="nav-link-text ms-1">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/billing.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
-              </div>
-              <span class="nav-link-text ms-1">Billing</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/virtual-reality.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">view_in_ar</i>
-              </div>
-              <span class="nav-link-text ms-1">Virtual Reality</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/rtl.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-              </div>
-              <span class="nav-link-text ms-1">RTL</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/notifications.html">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">notifications</i>
-              </div>
-              <span class="nav-link-text ms-1">Notifications</span>
-            </a>
-          </li>
-          <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Admin</h6>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white " href="#">
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">person</i>
-              </div>
-              <span class="nav-link-text ms-1">Profile</span>
-            </a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link text-white " 
-              href="{{ route('logout') }}"
-              onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-
-              <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">logout</i>
-              </div>
-              <span class="nav-link-text ms-1">Logout</span>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" >
-              @csrf
-            </form>
-          </li>
-          
-        </ul>
-      </div>
-      {{-- <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-        <div class="mx-3">
-          <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
-          <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
-        </div>
-      </div> --}}
+      @include('layouts/admins.sidebar')
     </aside>
       
       
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
       <!-- Navbar -->
-      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
-        <div class="container-fluid py-1 px-3">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-              <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-              <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
-            </ol>
-            <h6 class="font-weight-bolder mb-0">Dashboard</h6>
-          </nav>
-
-          <div class="justify-content-end collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-           
-            <ul class="navbar-nav  justify-content-end">   
-              
-              @auth('admin')
-              <li class="nav-item d-flex align-items-center">
-                
-                  <i class="fa fa-user me-sm-1"></i>
-                  <span class="d-sm-inline d-none font-weight-bold px-1">Welcome Admin: {{ Auth::guard('admin')->user()->name }}</span>
-               
-              </li>
-              
-              
-              <li class="nav-item d-flex align-items-center">
-                <i class="fa fa-sign-out mx-3 me-sm-1" aria-hidden="true"></i>
-                <a href="{{ route('logout') }}" 
-                    class="nav-link text-body font-weight-bold px-0"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                  
-                  <span class="d-sm-inline d-none"> Logout</span>
-                  
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" >
-                @csrf
-                </form>
-              </li>
-              @else
-              <li class="nav-item d-flex align-items-center">
-                <a href="{{ route('admin/login') }}" class="nav-link text-body font-weight-bold px-0">
-                  <i class="fa fa-user me-sm-1"></i>
-                  <span class="d-sm-inline d-none">Login</span>
-                </a>
-              </li>
-
-              @endauth
-            </ul>
-
-
-          </div>
-        </div>
-      </nav>
-
+      @include('layouts/admins.navbar')
       <!-- End Navbar -->
 
       <div class="container-fluid py-4">
 
+        @yield('content')
         
-        <div class="row">
-          <div class="col-12">
-            <div class="card my-4">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">All Candidates</h6>
-                </div>
-              </div>
-              <div class="card-body px-1 pb-2">
-                <div class="table-responsive p-0">
-                  <table class="table table-striped align-items-center mb-0 px-5">
-                    <thead>
-                      <tr class="ps-auto">
-                        <th class="text-uppercase text-secondary text-lg font-weight-bolder opacity-7">#</th>
-                        <th class="text-uppercase text-secondary text-lg font-weight-bolder opacity-7 ">Saint Name</th>
-                        <th class="text-uppercase text-secondary text-lg font-weight-bolder opacity-7">Name</th>
-                        {{-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th> --}}
-                        <th class="text-secondary opacity-7"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($candidates as $candidate)
-                        <tr>
-                          <td> {{ $loop->iteration }} </td>
-                          <td> {{ $candidate->canSaintName }} </td>
-                          <td >{{ $candidate->candidateFullName() }} </td>
-                        
-                          <td class="align-middle">
-                            <i class="fa fa-edit me-sm-1"></i>
-                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                              Edit
-                            </a>
-                          </td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
-        <footer class="footer py-4">
-          <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-              <div class="col-lg-6 mb-lg-0 mb-4">
-                <div class="copyright text-center text-sm text-muted text-lg-start">
-                  © 2023-<script>
-                    document.write(new Date().getFullYear())
-                  </script>,
-                  Confirmation Class <i class="fa fa-heart"></i> at
-                  <a href="https://www.hvmcc.org" class="font-weight-bold" target="_blank">Holy Vietnamese Martyrs Catholic Church</a>
-                  
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                  <li class="nav-item">
-                    <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
+        {{-- footer here --}}
+
+        @include('layouts/admins.footer')
 
       </div>
     </main>
