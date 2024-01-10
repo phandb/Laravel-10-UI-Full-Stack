@@ -1,7 +1,7 @@
 @extends('layouts.admins.admin')
 
 @section('content')
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-12">
       <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -30,10 +30,13 @@
                     <td >{{ $candidate->candidateFullName() }} </td>
                   
                     <td class="align-middle">
+                     
                       <i class="fa fa-edit me-sm-1"></i>
-                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        Edit
+                      <a href="{{ route('admins.edit-candidate', $candidate->id) }}" class="text-primarytext-md" >
+                        View & Edit
                       </a>
+
+                      
                     </td>
                   </tr>
                 @endforeach
