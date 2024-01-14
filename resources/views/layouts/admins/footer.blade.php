@@ -14,7 +14,7 @@
         <div class="col-lg-6">
           <ul class="nav nav-footer justify-content-center justify-content-lg-end">
             <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+              <a href="http://demos.creative-tim.com/material-dashboard/pages/dashboard.html?ref=readme-md2" class="nav-link text-muted" target="_blank">Material Dashboard 2 Theme</a>
             </li>
             
             <li class="nav-item">

@@ -1,5 +1,7 @@
 @extends('layouts.admins.admin')
 
+@section('title', 'Confirmation | admin-all-candidates')
+
 @section('content')
 <div class="row justify-content-center">
     <div class="col-12">

@@ -114,7 +114,7 @@ class AdminController extends Controller
 
        //return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
         
-        return redirect()->back()->with('status', 'Candidate information updated successfully');
+        return redirect()->back()->with('status', 'Candidate information updated successfully.');
     }
 
     /**
