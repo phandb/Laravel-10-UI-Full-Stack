@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\CandidateController;
 
 /*
@@ -27,6 +28,9 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
     Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
     Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
     Route::put('/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
+    Route::get('/user/update-password', [ChangePasswordController::class, 'index'])->name('user-password.change');
+    Route::post('/user/update-password', [ChangePasswordController::class, 'update'])->name('user-password.update');
+
 
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
 

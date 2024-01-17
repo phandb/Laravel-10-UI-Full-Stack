@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-    <a href="" class="navbar-brand p-0">
+    <a href="#" class="navbar-brand p-0">
         <h1 class="text-primary m-0"><i class="fa fa-dove me-3"></i>Confirmation Class</h1>
-        <!-- <img src="img/logo.png" alt="Logo"> -->
+        
     </a>
-   
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0 pe-4">
             {{-- <a href="index.html" class="nav-item nav-link active">Home</a>
@@ -25,14 +28,16 @@
                     <a href="{{ route('candidates.index') }}" class="nav-item nav-link">Candidates</a>
 
                     <li class="nav-item dropdown pe-2 d-flex align-items-center justify-content-end">
-                        <div href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div href="#" class="nav-link text-body " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user ms-sm-5"></i>
                             <span class="d-sm-inline d-none font-weight-bold px-1"> {{ Auth::user()->name }}</span>
                         </div>
-                        <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4 mt-2" aria-labelledby="dropdownMenuButton">
-                            <li class="mb-2">
-                                <i class="fa fa-key  ms-sm-5" aria-hidden="true"></i>
-                                <a class="dropdown-item border-radius-md px-1 d-sm-inline d-none " href="javascript:;">
+                        <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li class="my-3" >
+                                <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                                <a class="dropdown-item  d-sm-inline d-none 
+                                        @if(request()->routeIs('user-password.change')) active @endif "
+                                     href="{{ route('user-password.change') }}">
                                     <span class="font-weight-bold ">Change Password</span> 
                                     {{-- <div class="d-flex py-1">
                                         
@@ -45,14 +50,14 @@
                                     </div> --}}
                                 </a>
                             </li>
-                            <li class="dropdown-item border-radius-md">
-                                <i class="fa fa-sign-out  ms-sm-5" aria-hidden="true"></i>
+                            <li class="mb-2">
+                                <i class="fa fa-sign-out  mx-sm-4" aria-hidden="true"></i>
                                 <a href="{{ route('logout') }}" 
-                                    class="d-sm-inline d-none font-weight-bold px-1 "
+                                    class="dropdown-item d-sm-inline d-none "
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                   
-                                  <span class="d-sm-inline d-none"> Logout</span>
+                                  <span class="font-weight-bold"> Logout</span>
                                   
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
