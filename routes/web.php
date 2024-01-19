@@ -28,8 +28,8 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
     Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
     Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
     Route::put('/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
-    Route::get('/user/update-password', [ChangePasswordController::class, 'index'])->name('user-password.change');
-    Route::post('/user/update-password', [ChangePasswordController::class, 'update'])->name('user-password.update');
+    Route::get('/user/update-password', [ChangePasswordController::class, 'userPasswordChange'])->name('user-password.change');
+    Route::post('/user/update-password', [ChangePasswordController::class, 'userPasswordUpdate'])->name('user-password.update');
 
 
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
@@ -46,6 +46,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::put('/update/candidate/{id}', [AdminController::class, 'update'])->name('admins.update-candidate')->middleware('auth:admin');
 
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+
+    Route::get('/update-password', [ChangePasswordController::class, 'adminPasswordChange'])->name('admin-password.change')->middleware('auth:admin');
+    Route::post('/update-password', [ChangePasswordController::class, 'adminPasswordUpdate'])->name('admin-password.update')->middleware('auth:admin');
 
 });
 

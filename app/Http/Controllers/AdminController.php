@@ -26,7 +26,7 @@ class AdminController extends Controller
             
             return redirect() -> route('admins.dashboard');
         }
-        return redirect()->back()->with(['error' => 'error logging in']);
+        return redirect()->back()->with(['message' => 'Error logging in']);
     }
 
     /**

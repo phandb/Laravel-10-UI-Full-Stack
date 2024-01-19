@@ -6,45 +6,75 @@
           <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
         </ol>
         <h6 class="font-weight-bolder mb-0">Dashboard</h6> --}}
-        @if (session('status'))
+        {{-- @if (session('status'))
 
-      <div class="alert alert-info">
-       
-          <span class="ms-1 text-white">{{ session('status') }}</span>
-              
-      </div>
+          <div class="alert alert-info">
+          
+              <span class="ms-1 text-white">{{ session('status') }}</span>
+                  
+          </div>
       
 
-      @endif
+        @endif --}}
       </nav>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="justify-content-end collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
        
         <ul class="navbar-nav  justify-content-end">   
           
           @auth('admin')
-          <li class="nav-item d-flex align-items-center">
+          <li class="nav-item dropdown d-flex align-items-center">
             
+            <div href="#" class="nav-link text-body " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user me-sm-1"></i>
               <span class="d-sm-inline d-none font-weight-bold px-1">Welcome Admin: {{ Auth::guard('admin')->user()->name }}</span>
            
+            </div>
+
+              
+              <ul class="dropdown-menu  dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
+
+                <li class="text-primary m-3" >
+                  <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                  <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('admin-password.change')) active @endif "
+                       href="{{ route('admin-password.change') }}">
+                      <span class="font-weight-bold text-primary">Change Password</span> 
+                      {{-- <div class="d-flex py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center">
+                              <h6 class="text-sm font-weight-normal mb-1">
+                             
+                              </h6>
+                              
+                          </div>
+                      </div> --}}
+                  </a>
+                </li>
+
+                <li class="nav-item d-flex align-items-center">
+                  <i class="fa fa-sign-out mx-3 me-sm-1" aria-hidden="true"></i>
+                  <a href="{{ route('logout') }}" 
+                      class="dropdown-item nav-link text-body font-weight-bold px-0"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                    
+                    <span class="d-sm-inline d-none"> Logout</span>
+                    
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" >
+                  @csrf
+                  </form>
+                </li>
+              </ul>
+
           </li>
           
           
-          <li class="nav-item d-flex align-items-center">
-            <i class="fa fa-sign-out mx-3 me-sm-1" aria-hidden="true"></i>
-            <a href="{{ route('logout') }}" 
-                class="nav-link text-body font-weight-bold px-0"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-              
-              <span class="d-sm-inline d-none"> Logout</span>
-              
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" >
-            @csrf
-            </form>
-          </li>
+          
           @else
           <li class="nav-item d-flex align-items-center">
             <a href="{{ route('admin/login') }}" class="nav-link text-body font-weight-bold px-0">

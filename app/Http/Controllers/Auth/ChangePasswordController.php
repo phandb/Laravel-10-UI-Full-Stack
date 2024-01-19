@@ -20,12 +20,12 @@ class ChangePasswordController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function userPasswordChange()
     {
         return view('auth.passwords.change');
     }
 
-    public function update(Request $request)
+    public function userPasswordUpdate(Request $request)
     {
         $request->validate([
             'current_password' => 'required',
@@ -41,7 +41,42 @@ class ChangePasswordController extends Controller
             // update the user's password
             $user->update(['password' => Hash::make($request->new_password)]);
 
-            return redirect()->route('candidates.index')->with('success', 'Password changed successfully!');
+            return redirect()->back()->with('status', 'Password has been changed successfully!');
+
+        } else {
+            return redirect()->back()->withErrors(['current_password' => 'Incorrect current password.']);
+        }
+
+    //     User::find(auth()->user()->id)->update(['password' => Hash::make($request->new_password)]);
+
+    //    return redirect(route('candidates.index'))->with(['success' => 'Password updated successfully']);
+
+    }
+
+    public function adminPasswordChange()
+    {
+        return view('admins.change-password');
+    }
+
+    public function adminPasswordUpdate(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed',
+            // 'new_password_confirm'=> ['required', 'same:new_pssword'],
+
+        ]);
+
+        $admin = auth()->guard('admin');
+
+        //Auth::guard('admin')->user()->name
+
+        // Check if the current password matches the one in the database
+        if (Hash::check($request->current_password, $admin->user()->password)) {
+            // update the user's password
+            $admin->user()->update(['password' => Hash::make($request->new_password)]);
+
+            return redirect()->back()->with('status', 'Password has been changed successfully!');
 
         } else {
             return redirect()->back()->withErrors(['current_password' => 'Incorrect current password.']);

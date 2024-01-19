@@ -3,7 +3,11 @@
         <h1 class="text-primary m-0"><i class="fa fa-dove me-3"></i>Confirmation Class</h1>
         
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> --}}
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -33,12 +37,11 @@
                             <span class="d-sm-inline d-none font-weight-bold px-1"> {{ Auth::user()->name }}</span>
                         </div>
                         <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li class="my-3" >
+                            <li class="text-primary m-3" >
                                 <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
-                                <a class="dropdown-item  d-sm-inline d-none 
-                                        @if(request()->routeIs('user-password.change')) active @endif "
+                                <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-password.change')) active @endif "
                                      href="{{ route('user-password.change') }}">
-                                    <span class="font-weight-bold ">Change Password</span> 
+                                    <span class="font-weight-bold text-primary">Change Password</span> 
                                     {{-- <div class="d-flex py-1">
                                         
                                         <div class="d-flex flex-column justify-content-center">
@@ -50,14 +53,14 @@
                                     </div> --}}
                                 </a>
                             </li>
-                            <li class="mb-2">
+                            <li class="text-primary m-3" >
                                 <i class="fa fa-sign-out  mx-sm-4" aria-hidden="true"></i>
                                 <a href="{{ route('logout') }}" 
                                     class="dropdown-item d-sm-inline d-none "
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                                   
-                                  <span class="font-weight-bold"> Logout</span>
+                                  <span class="font-weight-bold text-primary"> Logout</span>
                                   
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -97,3 +100,4 @@
        
     </div>
 </nav>
+

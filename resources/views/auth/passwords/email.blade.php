@@ -11,18 +11,18 @@
                 
                     <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                         <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">{{ __('Reset Password') }}</h4>
-                        
+                        @if (session('status'))
+                            <h5 class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </h5>
+                        @endif
                     </div>
                 
                 </div>
 
                 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
