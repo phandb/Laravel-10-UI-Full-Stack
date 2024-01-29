@@ -28,6 +28,8 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
     Route::get('/', [CandidateController::class, 'index'])->name('candidates.index');
     Route::get('/edit/{id}', [CandidateController::class, 'edit'])->name('candidates.edit');
     Route::put('/update/{id}', [CandidateController::class, 'update'])->name('candidates.update');
+    
+    // Update password
     Route::get('/user/update-password', [ChangePasswordController::class, 'userPasswordChange'])->name('user-password.change');
     Route::post('/user/update-password', [ChangePasswordController::class, 'userPasswordUpdate'])->name('user-password.update');
 
@@ -47,8 +49,16 @@ Route::group(['prefix' => 'admin'], function() {
 
     //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
 
+    // Update password
     Route::get('/update-password', [ChangePasswordController::class, 'adminPasswordChange'])->name('admin-password.change')->middleware('auth:admin');
     Route::post('/update-password', [ChangePasswordController::class, 'adminPasswordUpdate'])->name('admin-password.update')->middleware('auth:admin');
+
+    // Forgot password
+    Route::get('/password/reset-link', [AdminController::class, 'showPasswordResetLinkForm'])->name('admin.password-forget-form');
+    Route::post('/password/reset-link', [AdminController::class, 'sendPasswordResetLink'])->name('admin.password-forget-link');
+    Route::get('/password/reset-link/{token}', [AdminController::class, 'showPasswordResetForm'])->name('admin.password-reset-form');
+    Route::post('/password/reset/', [AdminController::class, 'resetPassword'])->name('admin.password-reset');
+
 
 });
 

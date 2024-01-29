@@ -26,7 +26,7 @@
                     
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
                             name="email" 
-                            value="{{ old('email') }}" 
+                            value="{{ Session::get('verifiedEmail') ? Session::get('verfiedEmail') : old('email') }}" 
                             required autocomplete="email" 
                             autofocus>
                     <label class="form-label">Email</label>
@@ -54,9 +54,10 @@
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                     <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
-                    <a href="{{ route('password.request') }}" class="form-check-label mb-0 ms-3" for="rememberMe">Forgot your password?</a>
+                    <a href="{{ route('admin.password-forget-form') }}" class="form-check-label mb-0 ms-3" for="rememberMe">Forgot your password?</a>
 
                   </div>
+
 
                   <div class="text-center">
                     <button name="submit" type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>

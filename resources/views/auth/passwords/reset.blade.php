@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
-               
+                {{-- <div class="card-header">{{ __('Reset Password') }}</div> --}}
 
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 
@@ -62,7 +62,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Reset Password') }}
                                 </button>
                             </div>

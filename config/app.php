@@ -185,4 +185,10 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    /*
+        UTF-8 encoding
+    */
+
+    'encoding' => 'utf-8',
 ];

@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 
+use Carbon\Carbon;
+use App\Models\Admin;
 use App\Models\Candidate;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
+
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -70,10 +78,10 @@ class AdminController extends Controller
     {
         $candidate = Candidate::findOrFail($id);
         $data = $request->validate([
-            'canFirstName' => 'required',
-            'canMiddleName' => 'required',
-            'canLastName' => 'required',
-            'canSaintName' => 'required',
+            'canFirstName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'canMiddleName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'canLastName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'canSaintName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
             'dateOfBirth' => 'required',
             'address' => 'nullable',       
             'email' => 'nullable',
@@ -81,14 +89,14 @@ class AdminController extends Controller
             'baptizedYear' => 'nullable',
             //'baptismForm' => 'nullable',
             'file' => 'nullable|mimes:pdf,doc,docx,jpeg,png,jpg|max:2048',
-            'dadFirstName' => 'required',
-            'dadLastName' => 'required',
+            'dadFirstName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'dadLastName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
             'dadPhone' => 'nullable',
-            'momFirstName' => 'required',
-            'momLastName' => 'required',
-            'momPhone' => 'nullable',
-            'sponFirstName' => 'required',
-            'sponLastName' => 'required',
+            'momFirstName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'momLastName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'momPhone' => 'nullable|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'sponFirstName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
+            'sponLastName' => 'required|regex:/^[\p{L}\p{M}0-9\s\-]+$/u',
         ]);
 
         if ($file = $request->file('file')) {
@@ -123,5 +131,76 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // Forgot password reset
+
+    public function showPasswordResetLinkForm () {
+        return view('admins.forget-password-form');
+    }
+
+    public function sendPasswordResetLink(Request $request) {
+
+        // validate email: required and exists in admins table column email
+        $request->validate([
+            'email'=>'required|email|exists:admins,email'
+        ]);
+        // generate a token
+        $token = Str::random(64);
+        DB::table('password_resets')->insert([
+            'email'=>$request->email,
+            'token'=>$token,
+            'created_at'=>Carbon::now(),
+        ]);
+        //$name = DB::table('admins')->columns('name')->where($request->name)->first();
+        $action_link = route('admin.password-reset-form',['token'=>$token, 'email'=>$request->email]);
+        $body = "We have received a request to reset the password for account associated with ".$request->email. ". You can reset your password by clicking the link below.";
+
+        Mail::send('/admins/email-forgot', ['action_link'=>$action_link, 'body'=>$body], 
+            function($message) use ($request) {
+                $message->from('noreply@coding.net', 'Confirmation');
+                $message->to($request->email, 'name')->subject('Reset Password');
+        });
+
+        return back()->with('success', 'Check your email for password reset link');
+
+    }
+
+    public function showPasswordResetForm(Request $request, $token = null) {
+        return view('admins.reset-password')->with(['token'=>$token, 'email'=>$request->email]);
+    }
+
+    public function resetPassword(Request $request) {
+        // Validate form input
+        $request->validate([
+            'email'=>'required|email|exists:admins,email',
+            'password'=>'required|confirmed',
+            'password_confirmation'=>'required',
+        ]);
+        //validate token
+        $check_token = DB::table('password_resets')->where([
+            'email'=>$request->email,
+            'token'=>$request->token,
+        ])->first();
+        
+        // if token failed
+        if(!$check_token) {
+            return back()->withInput()->with('fail', 'Invalid token');
+        }else{
+            // if good update password
+            Admin::where('email', $request->email)->update([
+                'password'=>Hash::make($request->password)
+            ]);
+
+            // delete email in password_resets table
+            DB::table('password_resets')->where([
+                'email'=>$request->email
+            ])->delete();
+
+            return redirect()->route('admins.login')
+                    ->with('message', 'Your password have been changed successfully!')
+                    ->with('verifiedEmail', $request->email);
+
+        }
     }
 }

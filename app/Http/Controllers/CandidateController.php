@@ -67,27 +67,31 @@ class CandidateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $candidate = Candidate::findOrFail($id);
+        $candidate = Candidate::find($id);
+
+       
+        //string|regex:/^[\pL\s\-\.,]+$/u
+
         $data = $request->validate([
-            'canFirstName' => 'required',
-            'canMiddleName' => 'required',
-            'canLastName' => 'required',
-            'canSaintName' => 'required',
+            'canFirstName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'canMiddleName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'canLastName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'canSaintName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
             'dateOfBirth' => 'required',
             'address' => 'nullable',       
             'email' => 'nullable',
             'is_baptized_at_HVMCC' => 'nullable',
             'baptizedYear' => 'nullable',
             //'baptismForm' => 'nullable',
-            'file' => 'nullable|mimes:pdf,doc,docx,jpeg,png,jpg|max:2048',
-            'dadFirstName' => 'required',
-            'dadLastName' => 'required',
+            'filePath' => 'nullable|mimes:pdf,doc,docx,jpeg,png,jpg|max:2048',
+            'dadFirstName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'dadLastName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
             'dadPhone' => 'nullable',
-            'momFirstName' => 'required',
-            'momLastName' => 'required',
+            'momFirstName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'momLastName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
             'momPhone' => 'nullable',
-            'sponFirstName' => 'required',
-            'sponLastName' => 'required',
+            'sponFirstName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
+            'sponLastName' => 'required|string|regex:/^[\pL\s\-\.,]+$/u',
         ]);
 
         if ($file = $request->file('file')) {
@@ -110,6 +114,29 @@ class CandidateController extends Controller
             $candidate->filePath = $request->file('file')->storeAs('uploads', $candidate->canFirstName. '-' .$fileName);
         }
         $candidate->update($data);
+
+       
+        //dd($candidate);
+
+        // 'canFirstName',
+        // 'canMiddleName',
+        // 'canLastName',
+        // 'canSaintName',
+        // 'dateOfBirth',
+        // 'address',       
+        // 'email',
+        // 'is_baptized_at_HVMCC',
+        // 'baptizedYear',
+        // 'baptismForm',
+        // 'filePath',
+        // 'dadFirstName',
+        // 'dadLastName',
+        // 'dadPhone',
+        // 'momFirstName',
+        // 'momLastName',
+        // 'momPhone',
+        // 'sponFirstName',
+        // 'sponLastName',
 
        //return redirect(route('candidates.index'))->with(['success' => 'Candidate info updated successfully']);
         

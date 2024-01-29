@@ -10,8 +10,8 @@
         enctype="multipart/form-data" 
         method="POST" 
         action="{{ route('candidates.update', $candidate->id) }}" >
-        @csrf
-        @method('put')
+    @csrf
+    @method('put')
     <div class="row gx-4 mb-2">
       <div class="col-auto">
         <div class="avatar avatar-xl position-relative">
@@ -51,36 +51,41 @@
         <div class="row">
           <div class="col-md-3">
             <label for="canSaintName" class="form-label text-muted fw-lighter">Saint Name</label>
-            <input type="text" name="canSaintName" value="{{ $candidate->canSaintName }}" class="form-control fw-bolder" id="saintName">
+            <input type="text" name="canSaintName" value="{{ $candidate->canSaintName }}" class="form-control fw-bolder" id="canSaintName">
           </div>
           <div class="col-md-3">
               <label for="canLastName" class="form-label text-muted fw-lighter">Last Name</label>
-              <input type="text" name="canLastName" value="{{ $candidate->canLastName }}" class="form-control fw-bolder" id="lastName">
+              <input type="text" name="canLastName" value="{{ $candidate->canLastName }}" class="form-control fw-bolder" id="canLastName">
+              @error('canLastName')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
           </div>
           <div class="col-md-3">
               <label for="canMiddleName" class="form-label text-muted fw-lighter">Middle Name</label>
-              <input type="text" name="canMiddleName" value="{{ $candidate->canMiddleName }}" class="form-control fw-bolder" id="middleName">
+              <input type="text" name="canMiddleName" value="{{ $candidate->canMiddleName }}" class="form-control fw-bolder" id="canMiddleName">
           </div>
           <div class="col-md-3">
               <label for="canFirstName" class="form-label text-muted fw-lighter">First Name</label>
-              <input type="text" name="canFirstName" value="{{ $candidate->canFirstName }}" class="form-control fw-bolder" id="firstName">
+              <input type="text" name="canFirstName" value="{{ $candidate->canFirstName }}" class="form-control fw-bolder" id="canFirstName">
           </div>
         </div>
         
         <div class="row mt-5">
           <div class="col-3">
             <label for="dateOfBirth" class="form-label text-muted fw-lighter">Date of Birth (YYYY/M/D)</label>
-            <input type="text" name="dateOfBirth" value="{{ $candidate->dateOfBirth }}" class="form-control fw-bolder" >
+            <input id="dateOfBirth" type="text" name="dateOfBirth" value="{{ $candidate->dateOfBirth }}" class="form-control fw-bolder" >
           </div>
 
           <div class="col-2">
             <label for="age" class="form-label text-muted fw-lighter">Age</label>
-            <input type="text" name="age" value="{{ $candidate->getAge() }}" class="form-control fw-bolder" >
+            <input id="age"type="text" name="age" value="{{ $candidate->getAge() }}" class="form-control fw-bolder" >
           </div>
 
           <div class="col-6">
             <label for="address" class="form-label text-muted fw-lighter">Address</label>
-            <input type="text" name="address" value="{{ $candidate->address }}" class="form-control fw-bolder" >
+            <input id="address" type="text" name="address" value="{{ $candidate->address }}" class="form-control fw-bolder" >
           </div>
 
         </div>
@@ -88,16 +93,16 @@
         <div class="row mt-5">
           <div class="col-2">
             <label for="is_Baptized_At_HVMCC" class="form-label text-muted fw-lighter">Baptized at HVMCC</label>
-            <input type="text" name="is_Baptized_At_HVMCC" value="{{ ($candidate->is_baptized_at_HVMCC === 0 ) ? 'No' : 'Yes' }}" class="form-control fw-bolder" id="inputAddress" placeholder="1234 Main St">
+            <input id="is_Baptized_At_HVMCC" type="text" name="is_Baptized_At_HVMCC" value="{{ ($candidate->is_baptized_at_HVMCC === 0 ) ? 'No' : 'Yes' }}" class="form-control fw-bolder" id="inputAddress" placeholder="1234 Main St">
           </div>
           <div class="col-2">
             <label for="baptismYear" class="form-label text-muted fw-lighter">Year of Baptism</label>
-            <input type="text" name="baptizedYear" value="{{ $candidate->baptizedYear }}"class="form-control fw-bolder" >
+            <input id="baptismYear" type="text" name="baptizedYear" value="{{ $candidate->baptizedYear }}"class="form-control fw-bolder" >
           </div>
 
           <div class="col-6">
             <label for="baptismForm" class="form-label text-muted fw-lighter">Baptism Certificate</label>
-            <input type="text" name="baptismForm" value="{{ $candidate->baptismForm}}"class="form-control fw-bolder" >
+            <input id="baptismForm" type="text" name="baptismForm" value="{{ $candidate->baptismForm}}"class="form-control fw-bolder" >
           </div>
 
         </div>
@@ -107,7 +112,7 @@
             <label for="filePath" class="form-label text-muted fw-lighter">Upload File (jpeg, jpg, png, pdf, docx)
               
             </label>
-            <input type="file" name="file" class="form-control " id="file" placeholder="jpeg, jpg, png, pdf, docx">
+            <input type="file" name="filePath" class="form-control " id="filePath" placeholder="jpeg, jpg, png, pdf, docx">
             
           </div>
           
@@ -120,34 +125,34 @@
         <div class="row">
           <div class="col-md-4">
             <label for="dadLastName" class="form-label text-muted fw-lighter">Father Last Name</label>
-            <input type="text" name="dadLastName" value="{{ $candidate->dadLastName }}" class="form-control fw-bolder" >
+            <input id="dadLastName" type="text" name="dadLastName" value="{{ $candidate->dadLastName }}" class="form-control fw-bolder" >
           </div>
           
           <div class="col-md-4">
               <label for="dadFirstName" class="form-label text-muted fw-lighter">Father First Name</label>
-              <input type="text" name="dadFirstName" value="{{ $candidate->dadFirstName }}" class="form-control fw-bolder" >
+              <input id="dadFirstName" type="text" name="dadFirstName" value="{{ $candidate->dadFirstName }}" class="form-control fw-bolder" >
           </div>
 
           <div class="col-md-4">
             <label for="dadPhone" class="form-label text-muted fw-lighter">Father Phone Number</label>
-            <input type="text" name="dadPhone" value="{{ $candidate->dadPhone }}" class="form-control fw-bolder" >
+            <input id="dadPhone" type="text" name="dadPhone" value="{{ $candidate->dadPhone }}" class="form-control fw-bolder" >
           </div>
         </div>       
 
         <div class="row mt-5">
           <div class="col-md-4">
             <label for="momLastName" class="form-label text-muted fw-lighter">Mother Last Name</label>
-            <input type="text" name="momLastName" value="{{ $candidate->momLastName }}" class="form-control fw-bolder" >
+            <input id="momLastName" type="text" name="momLastName" value="{{ $candidate->momLastName }}" class="form-control fw-bolder" >
           </div>
         
           <div class="col-md-4">
               <label for="momFirstName" class="form-label text-muted fw-lighter">Mother First Name</label>
-              <input type="text" name="momFirstName" value="{{ $candidate->momFirstName }}" class="form-control fw-bolder" >
+              <input id="momFirstName" type="text" name="momFirstName" value="{{ $candidate->momFirstName }}" class="form-control fw-bolder" >
           </div>
 
           <div class="col-md-4">
               <label for="momPhone" class="form-label text-muted fw-lighter">Mother Phone Number</label>
-              <input type="text" name="momPhone" value="{{ $candidate->momPhone }}" class="form-control fw-bolder" >
+              <input id="momPhone" type="text" name="momPhone" value="{{ $candidate->momPhone }}" class="form-control fw-bolder" >
           </div>
         </div>        
 
@@ -158,12 +163,12 @@
         <div class="row">
           <div class="col-md-4">
             <label for="sponLastName" class="form-label text-muted fw-lighter">Sponsor Last Name</label>
-            <input type="text" name="sponLastName" value="{{ $candidate->sponLastName }}" class="form-control fw-bolder" >
+            <input id="sponLastName" type="text" name="sponLastName" value="{{ $candidate->sponLastName }}" class="form-control fw-bolder" >
           </div>
       
           <div class="col-md-4">
               <label for="sponFirstName" class="form-label text-muted fw-lighter">Sponsor First Name</label>
-              <input type="text" name="sponFirstName" value="{{ $candidate->sponFirstName }}" class="form-control fw-bolder" >
+              <input id="sponFirstName" type="text" name="sponFirstName" value="{{ $candidate->sponFirstName }}" class="form-control fw-bolder" >
           </div>
         </div> 
             
