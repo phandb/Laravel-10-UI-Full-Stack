@@ -40,6 +40,23 @@
 
                 <li class="text-primary m-3" >
                   <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                  <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('admin-profile.edit')) active @endif "
+                       href="{{ route('admin-profile.edit') }}">
+                      <span class="font-weight-bold text-primary">Update Profile</span> 
+                      {{-- <div class="d-flex py-1">
+                          
+                          <div class="d-flex flex-column justify-content-center">
+                              <h6 class="text-sm font-weight-normal mb-1">
+                             
+                              </h6>
+                              
+                          </div>
+                      </div> --}}
+                  </a>
+                </li>
+
+                <li class="text-primary m-3" >
+                  <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
                   <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('admin-password.change')) active @endif "
                        href="{{ route('admin-password.change') }}">
                       <span class="font-weight-bold text-primary">Change Password</span> 

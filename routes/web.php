@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\UserProfileController;
 use App\Http\Controllers\CandidateController;
+use App\Models\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,10 @@ Route::group(['prefix' => 'candidates', 'middleware' => 'auth'], function() {
     Route::post('/user/update-password', [ChangePasswordController::class, 'userPasswordUpdate'])->name('user-password.update');
 
 
-    //Route::post('/candidates/upload/{id}', [CandidateController::class, 'uploadFile'])->name('candidates.upload-file');
+    // User Profile
+    Route::get('/user/profile', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+    Route::post('/user/profile', [UserProfileController::class, 'update'])->name('user-profile.update');
+
 
 });
 
@@ -58,6 +63,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::post('/password/reset-link', [AdminController::class, 'sendPasswordResetLink'])->name('admin.password-forget-link');
     Route::get('/password/reset-link/{token}', [AdminController::class, 'showPasswordResetForm'])->name('admin.password-reset-form');
     Route::post('/password/reset/', [AdminController::class, 'resetPassword'])->name('admin.password-reset');
+
+    
+    // Admin Profile
+    Route::get('/profile', [AdminController::class, 'profileEdit'])->name('admin-profile.edit');
+    Route::post('/profile', [AdminController::class, 'profileUpdate'])->name('admin-profile.update');
+
 
 
 });

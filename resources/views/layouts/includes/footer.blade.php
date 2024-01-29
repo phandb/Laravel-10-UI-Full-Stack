@@ -4,11 +4,11 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <script>
+                    &copy; 2023-<script>
                         document.write(new Date().getFullYear())
                       </script>
                     <i class="fa fa-heart"></i>
-                    <a class="border-bottom" href="https://hvmcc.org">The Holy Vietnamese Martyrs Catholic Church</a>, All Right Reserved. 
+                    <a class="border-bottom" href="https://hvmcc.org">Holy Vietnamese Martyrs Catholic Church</a>, All Right Reserved. 
                     
                    
                 </div>

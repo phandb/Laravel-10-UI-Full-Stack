@@ -12,12 +12,18 @@ use Laravel\Ui\Presets\React;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function viewLogin() 
     {
@@ -203,4 +209,33 @@ class AdminController extends Controller
 
         }
     }
+
+    
+
+
+    public function profileEdit() {
+
+        //get the authenticated user object
+        $admin = Auth::guard('admin');
+
+        // call view edit to show user profile
+        return view('admins.edit-profile', compact('admin'));
+    }
+
+    public function profileUpdate(Request $request) {
+
+        //get the authenticated user object
+        $admin = Auth::guard('admin');
+        
+        // validate the request data
+        $data = $request->validate([
+            //using regex for unicode
+            'name' => 'required|string|regex:/^[\pL\s\-\.,]+$/u|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $admin->user()->id,
+        ]);
+
+        $admin->user()->update($data);
+        // redirect back with a success message
+        return redirect()->route('admins.dashboard')->withSuccess("Your Profile has been updated successfully!");
+    }   
 }

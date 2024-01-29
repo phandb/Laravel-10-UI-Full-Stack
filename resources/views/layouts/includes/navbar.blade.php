@@ -39,6 +39,14 @@
                         <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
                             <li class="text-primary m-3" >
                                 <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                                <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-profile.edit')) active @endif "
+                                     href="{{ route('user-profile.edit') }}">
+                                    <span class="font-weight-bold text-primary">Profile</span> 
+                                    
+                                </a>
+                            </li>
+                            <li class="text-primary m-3" >
+                                <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
                                 <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-password.change')) active @endif "
                                      href="{{ route('user-password.change') }}">
                                     <span class="font-weight-bold text-primary">Change Password</span> 
