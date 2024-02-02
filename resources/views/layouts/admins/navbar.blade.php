@@ -36,10 +36,10 @@
             </div>
 
               
-              <ul class="dropdown-menu  dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
+              <ul class="dropdown-menu  dropdown-menu-end  mt-1" aria-labelledby="navbarDarkDropdownMenuLink">
 
-                <li class="text-primary m-3" >
-                  <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                <li class="text-primary m-2" >
+                  <i class="fa fa-key  mx-sm-2" aria-hidden="true"></i>
                   <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('admin-profile.edit')) active @endif "
                        href="{{ route('admin-profile.edit') }}">
                       <span class="font-weight-bold text-primary">Update Profile</span> 
@@ -55,8 +55,8 @@
                   </a>
                 </li>
 
-                <li class="text-primary m-3" >
-                  <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                <li class="text-primary m-2" >
+                  <i class="fa fa-key  mx-sm-2" aria-hidden="true"></i>
                   <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('admin-password.change')) active @endif "
                        href="{{ route('admin-password.change') }}">
                       <span class="font-weight-bold text-primary">Change Password</span> 
@@ -72,14 +72,14 @@
                   </a>
                 </li>
 
-                <li class="nav-item d-flex align-items-center">
-                  <i class="fa fa-sign-out mx-3 me-sm-1" aria-hidden="true"></i>
+                <li class="text-primary m-2">
+                  <i class="fa fa-sign-out mx-sm-2 " aria-hidden="true"></i>
                   <a href="{{ route('logout') }}" 
-                      class="dropdown-item nav-link text-body font-weight-bold px-0"
+                      class="dropdown-item d-sm-inline d-none"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                     
-                    <span class="d-sm-inline d-none"> Logout</span>
+                    <span class="font-weight-bold text-primary"> Logout</span>
                     
                   </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" >

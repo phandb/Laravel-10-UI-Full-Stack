@@ -30,23 +30,25 @@
 
                 @else
                     <a href="{{ route('candidates.index') }}" class="nav-item nav-link">Candidates</a>
+                    
 
                     <li class="nav-item dropdown pe-2 d-flex align-items-center justify-content-end">
-                        <div href="#" class="nav-link text-body " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="nav-link  text-body " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user ms-sm-5"></i>
-                            <span class="d-sm-inline d-none font-weight-bold px-1"> {{ Auth::user()->name }}</span>
-                        </div>
-                        <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end  mt-5" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li class="text-primary m-3" >
-                                <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                            <span class="d-sm-inline d-none font-weight-bold px-1 "> {{ Auth::user()->name }}</span>
+                        </a>
+                        
+                        <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end " aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li class="text-primary m-2 " >
+                                <i class="fa fa-user  mx-sm-2" aria-hidden="true"></i>
                                 <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-profile.edit')) active @endif "
                                      href="{{ route('user-profile.edit') }}">
                                     <span class="font-weight-bold text-primary">Profile</span> 
                                     
                                 </a>
                             </li>
-                            <li class="text-primary m-3" >
-                                <i class="fa fa-key  mx-sm-4" aria-hidden="true"></i>
+                            <li class="text-primary m-2" >
+                                <i class="fa fa-key  mx-sm-2" aria-hidden="true"></i>
                                 <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-password.change')) active @endif "
                                      href="{{ route('user-password.change') }}">
                                     <span class="font-weight-bold text-primary">Change Password</span> 
@@ -61,8 +63,8 @@
                                     </div> --}}
                                 </a>
                             </li>
-                            <li class="text-primary m-3" >
-                                <i class="fa fa-sign-out  mx-sm-4" aria-hidden="true"></i>
+                            <li class="text-primary m-2" >
+                                <i class="fa fa-sign-out  mx-sm-2" aria-hidden="true"></i>
                                 <a href="{{ route('logout') }}" 
                                     class="dropdown-item d-sm-inline d-none "
                                     onclick="event.preventDefault();
