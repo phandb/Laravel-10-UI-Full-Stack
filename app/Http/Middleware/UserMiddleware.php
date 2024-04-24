@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserMiddleware
@@ -15,6 +16,26 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+       
+        // Check if user is authenticated
+        if(!Auth::check()) {
+            return redirect(route('login'))->with('error', 'Please Login First');
+        }
+
+        // if authenticated
+        $user = Auth::user();
+
+        // grant access if it is user role
+        if($user->role == 'user') {
+            return $next($request);
+        } 
+
+        if($user->role == 'admin') {
+            return redirect('/admin');
+        };
+
+        if($user->role == 'superadmin') {
+            return redirect('/superadmin');
+        };
     }
 }
