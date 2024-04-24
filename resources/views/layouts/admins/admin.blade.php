@@ -31,7 +31,7 @@
       @include('layouts/admins.navbar')
       <!-- End Navbar -->
 
-      <div class="container-fluid py-4">
+      <div class="container-fluid py-3 main">
 
         @yield('content')
         

@@ -72,7 +72,7 @@
                                 <button type="submit" class="btn bg-gradient-primary  d-inline">
                                     {{ __('Update Profile') }}
                                 </button>
-                                <a href=" {{ route('candidates.index') }}" type="cancel" class="btn bg-gradient-dark ms-2">{{ __('Back') }}</a>
+                                <a href=" {{ route('admins.dashboard') }}" type="cancel" class="btn bg-gradient-dark ms-2">{{ __('Cancel') }}</a>
                             </div>
 
                            

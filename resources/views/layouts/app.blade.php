@@ -19,7 +19,7 @@
       </aside> --}}
 
         <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0  bg-dark">
+        <div class="container-xl position-relative bg-dark">
             {{--  navbar --}}
             @include('layouts/includes.navbar')
 

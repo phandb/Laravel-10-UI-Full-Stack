@@ -21,7 +21,7 @@ class CandidateFactory extends Factory
             'canMiddleName' => fake()->firstName(),
             'canLastName' => fake()->lastName(),
             'canSaintName' => fake()->lastName(),
-            'dateOfBirth' => fake()->dateTimeBetween('1990-01-01', '2012-12-31')
+            'dateOfBirth' => fake()->dateTimeBetween('2008-09-01', '2010-12-31')
             ->format('Y/m/d'),
             'address' => fake()->address(),
            

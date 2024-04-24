@@ -171,7 +171,7 @@
         <div class="row justify-content-md-center  mt-5 mb-3">
           <hr>
           <button type="submit" class="btn btn-outline-primary col col-md-2 m-2">Update</button>
-          <a href=" {{ route('admins.dashboard') }}" type="cancel" class="btn btn-outline-danger  col col-md-2 m-2">Back</a>
+          <a href=" {{ route('admins.dashboard') }}" type="cancel" class="btn btn-outline-danger  col col-md-2 m-2">Cancel</a>
         </div>               
            
       </div>

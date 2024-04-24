@@ -3,7 +3,7 @@
 @section('title', 'Confirmation | Change Password')
 
 @section('content')
-<div class="container mt-5 mb-8 pt-5 pb-15">
+<div class="container my-auto mb-2">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card z-index-0 fadeIn3 fadeInBottom">
@@ -90,7 +90,7 @@
                                 <button type="submit" class="btn bg-gradient-primary  d-inline">
                                     {{ __('Update') }}
                                 </button>
-                                <a href=" {{ route('admins.dashboard') }}" type="cancel" class="btn bg-gradient-dark ms-2">{{ __('Back') }}</a>
+                                <a href=" {{ route('admins.dashboard') }}" type="cancel" class="btn bg-gradient-dark ms-2">{{ __('Cancel') }}</a>
                             </div>
 
                            

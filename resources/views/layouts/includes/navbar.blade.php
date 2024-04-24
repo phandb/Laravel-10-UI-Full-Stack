@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
     <a href="#" class="navbar-brand p-0">
         <h1 class="text-primary m-0"><i class="fa fa-dove me-3"></i>Confirmation Class</h1>
         
@@ -32,13 +32,13 @@
                     <a href="{{ route('candidates.index') }}" class="nav-item nav-link">Candidates</a>
                     
 
-                    <li class="nav-item dropdown pe-2 d-flex align-items-center justify-content-end">
-                        <a href="#" class="nav-link  text-body " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item dropdown pb-2">
+                        <a href="#" class="nav-link  text-body " id="navbarDarkDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-user ms-sm-5"></i>
                             <span class="d-sm-inline d-none font-weight-bold px-1 "> {{ Auth::user()->name }}</span>
                         </a>
                         
-                        <ul class="dropdown-menu  dropdown-menu-dark dropdown-menu-end " aria-labelledby="navbarDarkDropdownMenuLink">
+                        <ul class="dropdown-menu  dropdown-menu-dark dropdown-hover dropdown-menu-end pb-2" aria-labelledby="navbarDarkDropdown">
                             <li class="text-primary m-2 " >
                                 <i class="fa fa-user  mx-sm-2" aria-hidden="true"></i>
                                 <a class="dropdown-item  d-sm-inline d-none @if(request()->routeIs('user-profile.edit')) active @endif "
