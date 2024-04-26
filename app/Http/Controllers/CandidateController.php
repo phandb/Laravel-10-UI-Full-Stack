@@ -20,9 +20,24 @@ class CandidateController extends Controller
      */
     public function index(Request $request)
     {
-        // get candidates belong to the user
-        $candidates = Candidate::where('user_id', Auth::user()->id)->get();
-        return view('candidates.index', compact('candidates'));
+        // Check role of user
+        // if ($request->user()->role == 'admin') {
+        //     $candidates = Candidate::all();
+        //     return view('candidates.index', compact('candidates'));
+        // }
+
+        // if ($request->user()->role == 'superadmin') {
+        //     $candidates = Candidate::all();
+        //     return view('candidates.index', compact('candidates'));
+        // }
+
+        if ($request->user()->role == 'user') {
+            $candidates = Candidate::where('user_id', Auth::user()->id)->get();
+            return view('candidates.index', compact('candidates'));
+        } else {
+            $candidates = Candidate::all();
+            return view('admins.index', compact('candidates'));
+        }
     }
 
     /**

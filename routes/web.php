@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\Auth\UserProfileController;
 use App\Http\Controllers\CandidateController;
-use App\Models\Admin;
+use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ Route::group(['prefix' => 'admin'], function() {
     
     Route::get('/login', [AdminController::class, 'viewLogin'])->name('admins.login')->middleware('admin');
     Route::post('/login', [AdminController::class, 'checkLogin'])->name('admins.check-login');
-    Route::get('/index', [AdminController::class, 'index'])->name('admins.dashboard')->middleware('auth:admin');
+    Route::get('/index', [CandidateController::class, 'index'])->name('admins.dashboard')->middleware('admin', 'superadmin');
 
     Route::get('/edit/candidate/{id}', [AdminController::class, 'edit'])->name('admins.edit-candidate')->middleware('auth:admin');
     Route::put('/update/candidate/{id}', [AdminController::class, 'update'])->name('admins.update-candidate')->middleware('auth:admin');

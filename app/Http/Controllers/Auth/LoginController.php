@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -37,4 +39,42 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function login(Request $request) {
+
+        // validate credential of the login user
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if(Auth::attempt($credentials)) {
+            
+            // retrieve the user role
+            $user_role = Auth::user()->role;
+
+            // Redirect user accoring to their role
+            switch ($user_role) {
+                case "superadmin":
+                    return redirect('/candidates/');
+                    break;
+                case "admin":
+                    return redirect('/candidates/');
+
+                    break;
+                case "user":
+                    return redirect('/candidates/');
+                    break;
+                default:
+                // if user role is not found, logout the user
+                    Auth::logout();
+                    return back()->with('error', 'Oops, sonething went wrong.  Pleaase login.');
+                    break;
+            }
+        }
+        else {
+            return redirect('/login');
+        }
+    }
+
 }

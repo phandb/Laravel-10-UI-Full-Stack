@@ -26,12 +26,13 @@
        
         <ul class="navbar-nav  justify-content-end">   
           
-          @auth('admin')
+          {{-- @auth('admin') --}}
+          @auth
           <li class="nav-item dropdown d-flex align-items-center pb-2">
             
             <a href="#" class="nav-link text-body dropdown-toggle " id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user me-sm-1"></i>
-              <span class="d-sm-inline d-none font-weight-bold px-1">Welcome Admin: {{ Auth::guard('admin')->user()->name }}</span>
+              <span class="d-sm-inline d-none font-weight-bold px-1">Welcome {{Auth::user()->role}}: {{ Auth::user()->name }}</span>
            
               
             </a>
@@ -87,7 +88,7 @@
           
           @else
           <li class="nav-item d-flex align-items-center">
-            <a href="{{ route('admin/login') }}" class="nav-link text-body font-weight-bold px-0">
+            <a href="{{ route('login') }}" class="nav-link text-body font-weight-bold px-0">
               <i class="fa fa-sign-in mx-3 me-sm-1"></i>
               <span class="d-sm-inline d-none">Login</span>
             </a>

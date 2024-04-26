@@ -34,7 +34,7 @@
                     <td class="align-middle">
                      
                       <i class="fa fa-edit me-sm-1"></i>
-                      <a href="{{ route('admins.edit-candidate', $candidate->id) }}" class="text-primarytext-md" >
+                      <a href="{{ route('candidates.edit', $candidate->id) }}" class="text-primarytext-md" >
                         View & Edit
                       </a>
 
