@@ -1,0 +1,3 @@
+SET SQL_SAFE_UPDATES = 0;
+CALL sp_update_candidates_FK;
+SET SQL_SAFE_UPDATES = 1;

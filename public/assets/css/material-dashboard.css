@@ -118,7 +118,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
-  
+  /* height: 100vh; */
 }
 
 
@@ -133,7 +133,7 @@ body {
   
   color: white;
   
-  /* margin-top: auto; */
+  margin-top: auto;
 }
 
 hr {

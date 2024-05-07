@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admins.admin')
 
 @section('title', 'Confirmation | User Profile')
 

@@ -54,23 +54,25 @@ class LoginController extends Controller
             $user_role = Auth::user()->role;
 
             // Redirect user accoring to their role
-            switch ($user_role) {
-                case "superadmin":
-                    return redirect('/candidates/');
-                    break;
-                case "admin":
-                    return redirect('/candidates/');
+            // switch ($user_role) {
+            //     case "superadmin":
+            //         return redirect('/candidates/');
+            //         break;
+            //     case "admin":
+            //         return redirect('/candidates/');
 
-                    break;
-                case "user":
-                    return redirect('/candidates/');
-                    break;
-                default:
-                // if user role is not found, logout the user
-                    Auth::logout();
-                    return back()->with('error', 'Oops, sonething went wrong.  Pleaase login.');
-                    break;
-            }
+            //         break;
+            //     case "user":
+            //         return redirect('/candidates/');
+            //         break;
+            //     default:
+            //     // if user role is not found, logout the user
+            //         Auth::logout();
+            //         return back()->with('error', 'Oops, sonething went wrong.  Pleaase login.');
+            //         break;
+            // }
+
+            return redirect('/candidates/');
         }
         else {
             return redirect('/login');

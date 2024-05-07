@@ -21,21 +21,22 @@
 
 <body class="g-sidenav-show  bg-dark-200">
 
-    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl  fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
       @include('layouts/admins.sidebar')
     </aside>
       
       
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg mr-5">
       <!-- Navbar -->
       @include('layouts/admins.navbar')
       <!-- End Navbar -->
 
-      <div class="container-fluid py-3 main">
+      <div class="container-fluid py-3 px-7 mt-5 me-7 main flex-parent">
 
-        @yield('content')
+        <div class= "flex-child mr-5 mt-5">
+          @yield('content')
         
-        
+        </div>
 
         {{-- footer here --}}
 

@@ -1,0 +1,65 @@
+
+html, body {height: 100vh;}
+
+.flex-parent {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.flex-child {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+.google-cursive {
+   font-family: Smooch;
+   font-weight: 800;
+    font-style: normal;
+    font-size: xx-large;
+    color:bg-gradient-primary;
+}
+.ephesis-regular {
+    font-family: "Ephesis", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .aguafina-script-regular {
+    font-family: "Aguafina Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+}
+
+.card-header-style {
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+
+    
+}
+
+/* .bg-gradient-primary {
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+  } */
+  

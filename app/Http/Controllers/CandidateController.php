@@ -33,10 +33,10 @@ class CandidateController extends Controller
 
         if ($request->user()->role == 'user') {
             $candidates = Candidate::where('user_id', Auth::user()->id)->get();
-            return view('candidates.index', compact('candidates'));
+            return view('dashboard.index', compact('candidates'));
         } else {
             $candidates = Candidate::all();
-            return view('admins.index', compact('candidates'));
+            return view('dashboard.index', compact('candidates'));
         }
     }
 
@@ -64,7 +64,7 @@ class CandidateController extends Controller
         //
         $candidate = Candidate::findOrFail($id);
 
-        return view('candidates.detail')->with('candidate', $candidate);
+        return view('dashboard.detail-candidate')->with('candidate', $candidate);
     }
 
     /**
@@ -74,7 +74,7 @@ class CandidateController extends Controller
     {
         $candidate = Candidate::findOrFail($id);
 
-        return view('candidates.edit')->with('candidate', $candidate);
+        return view('dashboard.edit-candidate')->with('candidate', $candidate);
     }
 
     /**
